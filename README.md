@@ -1,10 +1,30 @@
-# Desafio
+# Desafio Thingable!
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.1.
+## Sobre o projeto
 
-## Development server
+Aplicação para o Desafio Desenvolvedor Front Angular Thingable. 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Exibição dos dados meteorológicos coletados na cidade de Delhi no período de 4 anos (de 2013 a 2017).
+- Para rodar a aplicação:
+
+  DEV (local) - npm run dev
+  
+  PROD (heroku) - npm run prod
+
+- Autenticação JWT
+  
+  email: desafio@desafio.com
+  
+  senha: desafio
+
+- Utiliza json server como base de dados (users.json, database.json);
+
+- Aplicação está rodando no Heroku;
+
+- Servidor mock em node;
+
+- Desenvolvido com [Angular CLI](https://github.com/angular/angular-cli) version 12.2.1.
+
 
 ## Code scaffolding
 
