@@ -1,0 +1,25 @@
+.chart-area {
+    height: 100%;
+}
+
+.logo_topo {
+    width: 130px;
+}
+
+.adj_h5 {
+    margin-top: 15px;
+    margin-right: 10px;
+}
+
+.adj_h1 {
+    margin-top: 15px;
+    font-weight: 700;
+}
+
+.ml20 {
+    margin-left: 20px;
+}
+
+.backgray {
+    background-color: gainsboro !important;
+}

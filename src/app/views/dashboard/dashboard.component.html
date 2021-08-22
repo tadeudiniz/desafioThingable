@@ -1,0 +1,230 @@
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <!-- Topbar Header -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h5 class="h5 mb-0 text-gray-800 adj_h5">Desafio</h5>
+                </div>
+
+                <img class="logo_topo" src="../../../assets/img/logo.jpg">
+
+                <div class="topbar-divider d-none d-sm-block"></div>
+
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800 adj_h1">Dashboard</h1>
+                </div>
+
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="img-profile rounded-circle" src="../../../assets/img/undraw_profile.svg">
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            aria-labelledby="userDropdown">
+
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-7">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                Dados diários da série temporal do clima
+                            </div>
+                            <div class="card-body">
+                                Aqui serão exibidos, dia a dia, dados meteorológicos coletados na cidade de Delhi no
+                                período de 4 anos (de 2013 a 2017).
+                                <br><br>
+                                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a href="#" class="btn btn-primary btn-icon-split nav-link active"
+                                            id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
+                                            type="button" role="tab" aria-controls="pills-home" aria-selected="true">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-chart-bar"></i>
+                                            </span>
+                                            <span class="text text-gray-400">Exibir Gráfico</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a href="#" class="btn btn-success btn-icon-split ml20 nav-link"
+                                            id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+                                            type="button" role="tab" aria-controls="pills-profile"
+                                            aria-selected="false">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-table"></i>
+                                            </span>
+                                            <span class="text text-gray-400">Exibir Tabela</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="../../../assets/DailyDelhiClimateTrain.csv" class="btn btn-warning btn-icon-split ml20">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-download"></i>
+                                            </span>
+                                            <span class="text">Download da Base de Dados</span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <hr>
+                                <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                        aria-labelledby="pills-home-tab">
+                                        <div class="col-xl-12 col-lg-7">
+                                            <div class="card shadow mb-4">
+                                                <!-- Card Header - Dropdown -->
+                                                <div
+                                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                    <h6 class="m-0 font-weight-bold text-primary">Gráfico</h6>
+                                                </div>
+                                                <!-- Card Body -->
+                                                <div class="card-body">
+                                                    <div class="chart-area">
+                                                        <span class="badge bg-secondary">Clique em um parâmetro para mostrar/ocultar</span>
+                                                        <canvas id="ctx"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                                        aria-labelledby="pills-profile-tab">
+                                        <div class="col-lg-12 mb-4">
+
+                                            <!-- Project Card Example -->
+                                            <div class="card shadow mb-4">
+                                                <div class="card-header py-3">
+                                                    <h6 class="m-0 font-weight-bold text-primary">Tabela</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Date</th>
+                                                                <th>Mean Temp</th>
+                                                                <th>Humidity</th>
+                                                                <th>Wind Speed</th>
+                                                                <th>Mean Pressure</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let climate of climateData">
+                                                                <td>{{ climate.date }}</td>
+                                                                <td>{{ climate.meantemp }}</td>
+                                                                <td>{{ climate.humidity }}</td>
+                                                                <td>{{ climate.wind_speed }}</td>
+                                                                <td>{{ climate.meanpressure }}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Row -->
+
+                <div class="row">
+                    <!-- Area Chart -->
+
+
+                </div>
+
+                <!-- Content Row -->
+                <div class="row">
+
+                    <!-- Content Column -->
+
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Desenvolvido por Tadeu Diniz | 2021</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Deseja sair?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Clicando em "SAIR" esta sessão será encerrada.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <a (click)="doLogout()" class="btn btn-primary" href="#">SAIR</a>
+            </div>
+        </div>
+    </div>
+</div>
