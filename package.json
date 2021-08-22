@@ -3,9 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "serve-static": "node serve-static.js",
-    "start": "concurrently \"npm run serve-static\" \"npm run database\"",
-    "dev": "ng serve",
+    "start": "node serve-static.js",
+    "dev": "concurrently \"ng serve\" \"npm run database\"",
     "database": "node server.js",
     "build": "ng build",
     "test": "ng test"
