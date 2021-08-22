@@ -10,6 +10,8 @@ Exibição dos dados meteorológicos coletados na cidade de Delhi no período de
   DEV (local) - npm run dev
   
   PROD (heroku) - npm run prod
+  
+- A aplicação está rodando no endereço: https://desafiothingable.herokuapp.com/
 
 - Autenticação JWT
   
