@@ -28,6 +28,7 @@
     "concurrently": "^6.2.1",
     "datatables.net-bs4": "^3.2.2",
     "express": "^4.17.1",
+    "express-history-api-fallback": "^2.2.1",
     "jquery": "^3.6.0",
     "jquery.easing": "^1.4.1",
     "json-server": "^0.16.3",
