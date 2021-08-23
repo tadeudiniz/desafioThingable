@@ -1,17 +1,14 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Chart, registerables } from 'chart.js';
+import { Climate } from 'src/app/resources/models/climate';
+import { ResponseDashboard } from 'src/app/resources/models/ResponseDashboard';
+import { environment } from 'src/environments/environment';
 Chart.register(...registerables);
 import climateDatas from '../../../assets/csvjson.json';
 
-interface Climate {
-  date: string;
-  meantemp: number;
-  humidity: number;
-  wind_speed: number;
-  meanpressure: number;
-}
+
 
 @Component({
   selector: 'app-dashboard',
@@ -24,31 +21,43 @@ export class DashboardComponent implements OnInit {
     private httpClient: HttpClient,
     private router: Router
   ) { }
+  
+  climateData: Climate[] = [];
 
-  climateData: Climate[] = climateDatas;
+  getClimateData() {
+    const token = localStorage.getItem('token')
+    return this.httpClient.get<ResponseDashboard>(`${environment.apiURL}/dashboard`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+  }
 
   ngOnInit() {
 
-    console.log(climateDatas);
+    this.getClimateData().subscribe(data => {
+      this.climateData = data.dashboard
+    }, (error: HttpErrorResponse) => {
+      if(error.status === 401) {
+        this.doLogout()
+      }
+    });
 
-    var jsonfile = {
-      "jsonarray": climateDatas
-    };
 
     //Percorre o arquivo json e retorna os valores dos parâmetros
-    var labels = jsonfile.jsonarray.map(function (e) {
+    const labels = this.climateData.map(function (e) {
       return e.date;
     });
-    var dataMeanTemp = jsonfile.jsonarray.map(function (e) {
+    const dataMeanTemp = this.climateData.map(function (e) {
       return e.meantemp;
     });
-    var dataHumidity = jsonfile.jsonarray.map(function (e) {
+    const dataHumidity = this.climateData?.map(function (e) {
       return e.humidity;
     });
-    var dataWindSpeed = jsonfile.jsonarray.map(function (e) {
+    const dataWindSpeed = this.climateData.map(function (e) {
       return e.wind_speed;
     });
-    var dataMeanpress = jsonfile.jsonarray.map(function (e) {
+    const dataMeanpress = this.climateData.map(function (e) {
       return e.meanpressure;
     });
 
@@ -124,7 +133,8 @@ export class DashboardComponent implements OnInit {
   }
 
   doLogout() {
-    this.router.navigate(['dashboard'])
+    localStorage.removeItem('token')
+    this.router.navigate(['/'])
   }
 
 }

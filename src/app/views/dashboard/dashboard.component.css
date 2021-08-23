@@ -23,3 +23,9 @@
 .backgray {
     background-color: gainsboro !important;
 }
+
+@media only screen and (max-width: 400px) {
+    .ml20 {
+      margin-left: 0;
+    }
+}

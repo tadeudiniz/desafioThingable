@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   public doLogin(): void {
     this.loginService.doLogin(this.requestLogin).subscribe(
       (data) => {
+        localStorage.setItem('token', data.access_token)
         this.router.navigate(['dashboard'])
       },
       (httpError) => {
