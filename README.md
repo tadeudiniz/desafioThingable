@@ -19,7 +19,7 @@ Exibição dos dados meteorológicos coletados na cidade de Delhi no período de
   
   senha: desafio
 
-- Utiliza json server como base de dados (users.json, database.json);
+- Utiliza json server como base de dados;
 
 - Aplicação está rodando no Heroku;
 
