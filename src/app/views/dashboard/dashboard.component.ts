@@ -16,34 +16,41 @@ import climateDatas from '../../../assets/csvjson.json';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  climateData: Climate[] = [];
 
   constructor(
     private httpClient: HttpClient,
     private router: Router
   ) { }
   
-  climateData: Climate[] = [];
+  
+
+  handleData (data: ResponseDashboard){
+    this.climateData = data
+    this.loadDashboard();
+  }
+
+  handleErrors (error: HttpErrorResponse) {
+    if(error.status === 401) {
+      this.doLogout()
+    }
+  }
 
   getClimateData() {
     const token = localStorage.getItem('token')
+    const headers = {
+      'Authorization': `Bearer ${token}`
+    }
     return this.httpClient.get<ResponseDashboard>(`${environment.apiURL}/dashboard`, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
+      headers
+    }).subscribe(data => this.handleData(data), (error: HttpErrorResponse) => this.handleErrors(error));
   }
 
   ngOnInit() {
+    this.getClimateData();
+  }
 
-    this.getClimateData().subscribe(data => {
-      this.climateData = data.dashboard
-    }, (error: HttpErrorResponse) => {
-      if(error.status === 401) {
-        this.doLogout()
-      }
-    });
-
-
+  loadDashboard() {
     //Percorre o arquivo json e retorna os valores dos parâmetros
     const labels = this.climateData.map(function (e) {
       return e.date;
@@ -62,7 +69,7 @@ export class DashboardComponent implements OnInit {
     });
 
     //Para exibir o gráfico
-    var myChart = new Chart("ctx", {
+    new Chart("ctx", {
       type: 'line',
       data: {
         labels: labels,

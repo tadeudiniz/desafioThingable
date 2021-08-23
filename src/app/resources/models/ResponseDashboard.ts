@@ -1,5 +1,3 @@
 import { Climate } from "./climate";
 
-export interface ResponseDashboard {
-    dashboard: Climate[]
-}
+export type ResponseDashboard = Climate[]
